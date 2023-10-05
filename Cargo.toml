@@ -1,0 +1,12 @@
+[package]
+name = "winui"
+version = "0.0.0"
+edition = "2021"
+authors = ["Luca Lewin <contact@lucalewin.dev>"]
+description = "physics / chemisty simulator"
+license = "MIT OR Apache-2.0"
+homepage = "https://lucalewin.dev/projects/winui-rs"
+documentation = "https://lucalewin.dev/docs/winui-rs"
+repository = "https://github.com/lucalewin/winui-rs"
+
+[dependencies]
