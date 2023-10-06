@@ -1,0 +1,12 @@
+[package]
+name = "winui-sys"
+version = "0.0.0"
+edition = "2021"
+authors = ["Luca Lewin <contact@lucalewin.dev>"]
+build = "build/main.rs"
+
+[dependencies]
+
+[build-dependencies]
+const_format = "0.2.31"
+bindgen = "0.68.1"

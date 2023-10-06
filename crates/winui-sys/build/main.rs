@@ -10,10 +10,39 @@ fn main() {
 fn generate_bindings() {
     let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
 
+    // let version_bindings = bindgen::Builder::default()
+    //     // .header("src/wrapper/bootstrap.h")
+    //     .header("src/wrapper/version.h")
+    //     // .header("src/wrapper/xaml.h")
+    //     // .clang_arg("-Ipackages\\Microsoft.WindowsAppSDK.1.4.230913002\\include")
+    //     .clang_args([
+    //         "-x", "c++",
+    //         "-std=c++17",
+    //         "-Wc++17-extensions",
+    //         r"-Igenerated_files",
+    //         r"-Ipackages\Microsoft.WindowsAppSDK.1.4.230913002\include",
+    //         r"-IC:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\ucrt",
+    //         r"-IC:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um",
+    //         r"-IC:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared",
+    //         r"-IC:\Program Files (x86)\Windows Kits\10\Lib\10.0.22621.0\um\x64",
+    //         r"-IC:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include",
+    //     ])
+    //     .parse_callbacks(Box::new(bindgen::CargoCallbacks))
+    //     .generate()
+    //     .expect("Unable to generate bindings");
+
+    // version_bindings
+    //     .write_to_file(out_path.join("version.rs"))
+    //     .expect("Couldn't write bindings!");
+
     let bootstrap_bindings = bindgen::Builder::default()
         .header("src/wrapper/bootstrap.h")
+        // .header("src/wrapper/xaml.h")
         // .clang_arg("-Ipackages\\Microsoft.WindowsAppSDK.1.4.230913002\\include")
         .clang_args([
+            "-x", "c++",
+            "-std=c++17",
+            "-Wc++17-extensions",
             r"-Igenerated_files",
             r"-Ipackages\Microsoft.WindowsAppSDK.1.4.230913002\include",
             r"-IC:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\ucrt",

@@ -1,0 +1,10 @@
+[package]
+name = "example"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+winui = { path = "../crates/winui" }
+
+[build-dependencies]
+winui-build = { path = "../crates/winui-build" }

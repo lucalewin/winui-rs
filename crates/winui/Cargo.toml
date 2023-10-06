@@ -1,0 +1,8 @@
+[package]
+name = "winui"
+version = "0.1.0"
+edition = "2021"
+authors = ["Luca Lewin <contact@lucalewin.dev>"]
+
+[dependencies]
+winui-sys = { path = "../winui-sys" }
