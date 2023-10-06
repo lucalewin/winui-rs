@@ -9,4 +9,13 @@ homepage = "https://lucalewin.dev/projects/winui-rs"
 documentation = "https://lucalewin.dev/docs/winui-rs"
 repository = "https://github.com/lucalewin/winui-rs"
 
+build = "build/main.rs"
+
 [dependencies]
+
+[build-dependencies]
+const_format = "0.2.31"
+bindgen = "0.68.1"
+
+[workspace]
+members = ["./", "./winui-test"]
