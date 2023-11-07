@@ -9,4 +9,4 @@ build = "build/main.rs"
 
 [build-dependencies]
 const_format = "0.2.31"
-bindgen = "0.68.1"
+bindgen = "0.69.1"
