@@ -1,9 +1,11 @@
-use std::{process::Command, path::PathBuf, env};
+use std::{env, path::PathBuf, process::Command};
 
 const WINDOWS_APP_SDK_VERSION: &str = "1.4.230913002";
 
 fn main() {
-    println!(r#"cargo:rustc-link-search=C:\dev\winui-rs\crates\winui-sys\packages\Microsoft.WindowsAppSDK.{WINDOWS_APP_SDK_VERSION}\lib\win10-x64"#);
+    println!(
+        r#"cargo:rustc-link-search=C:\dev\winui-rs\crates\winui-sys\packages\Microsoft.WindowsAppSDK.{WINDOWS_APP_SDK_VERSION}\lib\win10-x64"#
+    );
     println!(r#"cargo:rustc-link-lib=Microsoft.WindowsAppRuntime.Bootstrap"#);
 
     download_and_generate();
@@ -21,7 +23,8 @@ fn generate_bindings() {
         .allowlist_item("MddBootstrapInitialize2")
         .allowlist_item("MddBootstrapShutdown")
         .clang_args([
-            "-x", "c++",
+            "-x",
+            "c++",
             "-std=c++17",
             "-Wc++17-extensions",
             "-Igenerated_files",
@@ -35,25 +38,24 @@ fn generate_bindings() {
         .write_to_file(out_path.join("bootstrap.rs"))
         .expect("Couldn't write bindings!");
 
+    // let xaml_bindings = bindgen::Builder::default()
+    //     .header("src/wrapper/xaml.h")
+    //     // .allowlist_type("Application")
+    //     .layout_tests(false)
+    //     .clang_args([
+    //         "-x",
+    //         "c++",
+    //         "-std=c++20",
+    //         "-Igenerated_files",
+    //         &format!(r"-Ipackages\Microsoft.WindowsAppSDK.{WINDOWS_APP_SDK_VERSION}\include"),
+    //     ])
+    //     .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
+    //     .generate()
+    //     .expect("Unable to generate bindings");
 
-
-    let xaml_bindings = bindgen::Builder::default()
-        .header("src/wrapper/xaml.h")
-        // .allowlist_type("Application")
-        .layout_tests(false)
-        .clang_args([
-            "-x", "c++",
-            "-std=c++20",
-            "-Igenerated_files",
-            &format!(r"-Ipackages\Microsoft.WindowsAppSDK.{WINDOWS_APP_SDK_VERSION}\include"),
-        ])
-        .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
-        .generate()
-        .expect("Unable to generate bindings");
-
-    xaml_bindings
-        .write_to_file(out_path.join("xaml.rs"))
-        .expect("Couldn't write bindings!");
+    // xaml_bindings
+    //     .write_to_file(out_path.join("xaml.rs"))
+    //     .expect("Couldn't write bindings!");
 }
 
 /// use `nuget` and `cppwinrt` to download the `WindowsAppSDK` and generate header files
@@ -66,7 +68,7 @@ fn download_and_generate() {
             "-OutputDirectory",
             "packages",
             "-Version",
-            WINDOWS_APP_SDK_VERSION
+            WINDOWS_APP_SDK_VERSION,
         ])
         .spawn()
         .unwrap();
@@ -78,11 +80,13 @@ fn download_and_generate() {
             "-input",
             &format!("packages\\Microsoft.WindowsAppSDK.{WINDOWS_APP_SDK_VERSION}\\lib\\uap10.0"),
             "-input",
-            &format!("packages\\Microsoft.WindowsAppSDK.{WINDOWS_APP_SDK_VERSION}\\lib\\uap10.0.18362"),
+            &format!(
+                "packages\\Microsoft.WindowsAppSDK.{WINDOWS_APP_SDK_VERSION}\\lib\\uap10.0.18362"
+            ),
             "-input",
             "sdk",
             "-output",
-            "generated_files"
+            "generated_files",
         ])
         .spawn()
         .unwrap();

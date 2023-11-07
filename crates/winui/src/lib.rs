@@ -9,7 +9,7 @@ impl Application {
         // let charge = PowerManager::RemainingChargePercent().unwrap();
         // println!("Remaining charge: {charge}%");
 
-        Self {  }
+        Self {}
     }
 }
 
