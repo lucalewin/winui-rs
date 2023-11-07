@@ -34,6 +34,26 @@ fn generate_bindings() {
     bootstrap_bindings
         .write_to_file(out_path.join("bootstrap.rs"))
         .expect("Couldn't write bindings!");
+
+
+
+    let xaml_bindings = bindgen::Builder::default()
+        .header("src/wrapper/xaml.h")
+        // .allowlist_type("Application")
+        .layout_tests(false)
+        .clang_args([
+            "-x", "c++",
+            "-std=c++20",
+            "-Igenerated_files",
+            &format!(r"-Ipackages\Microsoft.WindowsAppSDK.{WINDOWS_APP_SDK_VERSION}\include"),
+        ])
+        .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
+        .generate()
+        .expect("Unable to generate bindings");
+
+    xaml_bindings
+        .write_to_file(out_path.join("xaml.rs"))
+        .expect("Couldn't write bindings!");
 }
 
 /// use `nuget` and `cppwinrt` to download the `WindowsAppSDK` and generate header files

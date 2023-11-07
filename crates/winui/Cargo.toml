@@ -6,3 +6,13 @@ authors = ["Luca Lewin <contact@lucalewin.dev>"]
 
 [dependencies]
 winui-sys = { path = "../winui-sys" }
+
+# [dependencies.windows]
+# version = "0.37"
+
+# [dependencies.windows-app]
+# git = "https://github.com/microsoft/windows-app-rs"
+# features = [
+#     "WindowsAppSdk_Foundation",
+#     "Windows_System_Power"
+# ]

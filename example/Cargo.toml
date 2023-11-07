@@ -8,3 +8,21 @@ winui = { path = "../crates/winui" }
 
 [build-dependencies]
 winui-build = { path = "../crates/winui-build" }
+
+[dependencies.windows]
+version = "0.37"
+features = [
+    "implement",
+    "Foundation_Collections",
+    "UI_Xaml_Interop",
+]
+
+[dependencies.windows-app]
+git = "https://github.com/microsoft/windows-app-rs"
+features = [
+    "implement",
+    "WindowsAppSdk_Foundation",
+    "UI_Xaml_Controls_Primitives",
+    "UI_Xaml_XamlTypeInfo",
+    "UI_Xaml_Markup"
+]
